@@ -1,5 +1,7 @@
 package com.jasvideo.ao.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class VideoInfo {
 
 	public String getFileName() {
@@ -50,5 +52,15 @@ public class VideoInfo {
 	}
 
 	private Integer genreId;
+	
+	private MultipartFile thumbnail;
+
+	public MultipartFile getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(MultipartFile thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 
 }

@@ -46,7 +46,7 @@ public class EnrichController {
 					model.addAttribute("categories", categories);
 					model.addAttribute("genres", genres);
 
-					return "enrich_page";
+					return "enrich_page_new";
 				}
 				
 		
@@ -63,7 +63,7 @@ public class EnrichController {
 			log.info("Vidoe name:"+video.getVideoName());
 		}
 		
-		return "publish_page";
+		return "publish_page_new";
 	}
 
 }

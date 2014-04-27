@@ -2,6 +2,8 @@ package com.jasvideo.ao.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class PublishController {
 	
 	@RequestMapping(value = "/publish", method = RequestMethod.POST)
 	public String publish(@ModelAttribute("enrichForm") EnrichForm enrichForm,
-			BindingResult result, Model model){
+			BindingResult result, Model model,HttpServletRequest request){
 		
 		List<VideoInfo> videos = enrichForm.getVideos();
 		
@@ -35,6 +37,8 @@ public class PublishController {
 			log.info("FileName:"+ videoInfo.getFileName());
 			assetDAO.saveVideoInfo(videoInfo);
 		}
+		
+		request.getSession().invalidate();
 		
 		
 		return "publish_success";

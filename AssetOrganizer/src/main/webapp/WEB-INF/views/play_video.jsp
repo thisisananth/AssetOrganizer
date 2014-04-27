@@ -5,8 +5,8 @@
 	<title>Asset Organizer</title>
 	<link href="http://vjs.zencdn.net/4.5/video-js.css" rel="stylesheet">
 <script src="http://vjs.zencdn.net/4.5/video.js"></script>
-<script src=resources/videojs.watermark.js></script>
- <link href="resources/videojs.watermark.css" rel="stylesheet">
+<script src=resources/js/videojs.watermark.js></script>
+ <link href="resources/js/videojs.watermark.css" rel="stylesheet">
 </head>
 <body>
 <h1>
@@ -24,7 +24,7 @@ var my_video_id = videojs('my_video_1');
 
 // Set value to the plugin
 my_video_id.watermark({
-  file: 'resources/thumbnail.jpg',
+  file: 'resources/images/thumbnail.jpg',
   //file: 'http://www.videojs.com/img/logo.png',
   xpos: 100,
   ypos: 0,
