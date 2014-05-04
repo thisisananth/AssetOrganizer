@@ -129,7 +129,7 @@ display:none;
 						<h5  id="progText" class="hide">Uploading...</h5>
 					
 						<input style="display: none;" id="fileupload" type="file" name="files[]"
-							data-url="video/upload" multiple>
+							data-url="video/upload" accept="video/mp4">
 						
 						
 						
@@ -191,9 +191,9 @@ $(function () {
         $('#fileupload').fileupload({
             add: function(e, data) {
                     var uploadErrors = [];
-                    var acceptFileTypes = /^video\/(x-flv|mp4|mov|avi)$/i;
+                    var acceptFileTypes = /^video\/(mp4)$/i;
                     if(data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
-                        uploadErrors.push('Please upload only video files in flv,mp4,mov or avi format');
+                        uploadErrors.push('Please upload only video files in mp4 format');
                     }
                     if(uploadErrors.length > 0) {
                         alert(uploadErrors.join("\n"));
@@ -226,6 +226,7 @@ $(function () {
            	if($('#uploaded-files tr').length > 0){
            		$('#nextButton').removeClass("hide");
            		$("#progText").addClass("hide");
+           		
            	  $('#progress .bar').css('width','0%');
 
            	}
@@ -234,6 +235,8 @@ $(function () {
         progressall: function (e, data) {
         	
         	$('#progText').removeClass("hide");
+        	$('#browse').addClass("hide");//Upload only one file
+        	$('.lead').addClass("hide");
         	
             var progress = parseInt(data.loaded / data.total * 100, 10);
             $('#progress .bar').css(

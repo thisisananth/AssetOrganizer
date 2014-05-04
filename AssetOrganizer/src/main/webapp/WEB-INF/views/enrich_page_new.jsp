@@ -107,7 +107,10 @@
 
 					</select>
 					<input type="hidden" name="videos[${counter.index}].fileName"
-						type="text"  value="${video.fileName}" /></td>
+						type="text"  value="${video.fileName}" />
+						<input type="hidden" name="videos[${counter.index}].thumbName" value="${video.thumbName}">
+						</td>
+					
 				  </tr>
 				 
 				  </c:forEach>

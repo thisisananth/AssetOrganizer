@@ -1,6 +1,7 @@
 package com.jasvideo.ao.web;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,8 +36,22 @@ public class PublishController {
 		for(VideoInfo videoInfo:videos){
 			
 			log.info("FileName:"+ videoInfo.getFileName());
+			
+			videoInfo.setVideoUUID(UUID.randomUUID());
+			
+			
 			assetDAO.saveVideoInfo(videoInfo);
+			
 		}
+		
+		if(videos!=null&&videos.size()>0){
+			model.addAttribute("uuid", videos.get(0).getVideoUUID());
+		}
+		
+		
+		
+		
+		
 		
 		request.getSession().invalidate();
 		
@@ -44,10 +59,6 @@ public class PublishController {
 		return "publish_success";
 	}
 	
-	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public String getVideos(){
-		return "play_video";
-		
-	}
+	
 
 }

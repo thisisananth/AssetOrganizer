@@ -82,15 +82,18 @@
 				<tbody>
 				<c:forEach varStatus="counter" var="video" items="${enrichForm.videos}">
 				<tr>
-					<td style="word-wrap:break-word" ><input name="videos[${counter.index}].fileName" type="text" width="30" 
-						readonly="readonly" value="${video.fileName}" /></td>
-					<td><input name="videos[${counter.index}].videoName" type="text" value="${video.videoName}" width="30" readonly="readonly" /></td>
-					<td><input name="${video.categoryId}" type="text" value="${categories[video.categoryId]}" width="20" readonly="readonly" /></td>
-					<td><input name="${video.genreId}" type="text" value="${genres[video.genreId]}" width="20" readonly="readonly" />
+					<td style="word-wrap:break-word" >${video.fileName}</td>
+					<td>${video.videoName}</td>
+					<td>${categories[video.categoryId]}</td>
+					<td>${genres[video.genreId]}
 					
-					<input name="videos[${counter.index}].categoryId" type="hidden" value="${video.categoryId}"  /></td>
-					<input name="videos[${counter.index}].genreId" type="hidden" value="${video.genreId}"  /></td>
-					<input type="hidden" name="videos[${counter.index}].thumbName" value="${video.thumbName}"></td>
+					<input name="videos[${counter.index}].categoryId" type="hidden" value="${video.categoryId}"  />
+					<input name="videos[${counter.index}].genreId" type="hidden" value="${video.genreId}"  />
+					<input type="hidden" name="videos[${counter.index}].thumbName" value="${video.thumbName}">
+					<input name="videos[${counter.index}].fileName" type="hidden" 
+						 value="${video.fileName}" />
+					<input name="videos[${counter.index}].videoName" type="hidden" value="${video.videoName}"  />
+					</td>
 
 				</tr>
 				</c:forEach>

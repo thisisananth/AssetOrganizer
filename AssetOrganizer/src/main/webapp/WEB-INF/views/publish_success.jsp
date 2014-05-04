@@ -69,12 +69,19 @@
 			<h3 align="center">Congratulations.!!!</h3>
 			<br>
 			<h4 align="center">Your files are published successfully.</h4>
+			<br>
+		 <div class="text-center button-alignment">
+		<button class="btn btn-success" type="button" onClick="window.location.href='preview?id=${uuid}';" >Preview <i class="fa fa-arrow-right"></i></button>
+	  	</div>
+			
 			
 		</div>
+		
 		
 	  </div>
 	  
 	</div> 
+	
 	
 	<footer clas="bs-docs-footer" style="height: 50px;">&nbsp;</footer>
     <!-- Bootstrap core JavaScript
