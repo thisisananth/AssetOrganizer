@@ -90,7 +90,8 @@ The default control bar that is a container for most of the controls.
   /* background-color-with-alpha */
   background-color: #07141e;
   background-color: rgba(7, 20, 30, 0.7);
-  border-radius: 1em;
+  
+  
 }
 /* Show the control bar only once the video has started playing */
 .vjs-default-skin.vjs-has-started .vjs-control-bar {
@@ -98,7 +99,7 @@ The default control bar that is a container for most of the controls.
   /* Visibility needed to make sure things hide in older browsers too. */
 
   visibility: visible;
-  opacity: 1;
+  opacity: 0.6;
   /* transition */
   -webkit-transition: visibility 0.1s, opacity 0.1s;
   -moz-transition: visibility 0.1s, opacity 0.1s;

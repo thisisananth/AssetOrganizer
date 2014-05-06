@@ -195,8 +195,12 @@ $(function () {
                     if(data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
                         uploadErrors.push('Please upload only video files in mp4 format');
                     }
+                    if(data.originalFiles[0]['size'].length && data.originalFiles[0]['size'] > 153600) {
+                        uploadErrors.push('Filesize is too big');
+                    }
                     if(uploadErrors.length > 0) {
                         alert(uploadErrors.join("\n"));
+                   
                     } else {
                         data.submit();
                     }
