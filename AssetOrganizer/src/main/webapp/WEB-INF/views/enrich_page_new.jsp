@@ -117,6 +117,41 @@
 				</tbody>
 			  </table>
 			</div>
+			<h5>Please select the player style</h5>
+			<div class="table-responsive">
+			  <table class="table table-bordered">
+				<thead>
+				  <tr>
+				  	<th>File Name</th>
+					<th>Color</th>
+					<th>Preview </th>
+					
+				  </tr>
+				
+				
+				</thead>
+				<tbody>
+				<c:forEach varStatus="counter" var="video"
+				items="${enrichForm.videos}">
+				  <tr>
+					<td rowspan="2">${video.fileName}</td>
+					<td><input name="videos[${counter.index}].style"
+						type="radio" value="blue" /> &nbsp;blue</td>
+					<td><img alt="blue preview" width="490em" height="200em" src="resources/images/blue-player.png"> </td>
+					
+				  </tr>
+				  <tr>
+					
+					<td><input name="videos[${counter.index}].style"
+						type="radio" value="red" /> &nbsp;red</td>
+					<td><img alt="red preview" width="490em" height="200em" src="resources/images/red-player.png"> </td>
+					
+				  </tr>
+				 
+				  </c:forEach>
+				</tbody>
+			  </table>
+			</div>
 		</div>
 		
 	  </div>
@@ -127,7 +162,7 @@
 	  </div>
 	</div>
 	</form:form> 
-	<footer clas="bs-docs-footer" style="height: 50px;">&nbsp;</footer>
+	<footer class="bs-docs-footer" style="height: 50px;">&nbsp;</footer>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

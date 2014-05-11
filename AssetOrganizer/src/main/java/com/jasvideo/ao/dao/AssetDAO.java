@@ -37,19 +37,19 @@ public class AssetDAO {
 
 	public void saveVideoInfo(VideoInfo videoInfo) {
 
-		String query = "insert into video_info(video_name,file_name,thumbnail_name,category_id,genre_id,created_time,uuid)"
-				+ "values(?,?,?,?,?,localtimestamp,?)";
+		String query = "insert into video_info(video_name,file_name,thumbnail_name,category_id,genre_id,created_time,uuid,player_style)"
+				+ "values(?,?,?,?,?,localtimestamp,?,?)";
 
 		jdbcTemplate.update(
 				query,
 				new Object[] { videoInfo.getVideoName(),
 						videoInfo.getFileName(), videoInfo.getThumbName(),
-						videoInfo.getCategoryId(), videoInfo.getGenreId(),videoInfo.getVideoUUID() });
+						videoInfo.getCategoryId(), videoInfo.getGenreId(),videoInfo.getVideoUUID(),videoInfo.getStyle() });
 
 	}
 	
 	public VideoDisplayInfo getVideoByUUID(String uuid){
-		String query = "select video_name,file_name,thumbnail_name,genre_name,category_name from video_info vid,genre gen, category cat where vid.genre_id = gen.id AND vid.category_id=cat.id"+
+		String query = "select video_name,file_name,thumbnail_name,genre_name,category_name,player_style style from video_info vid,genre gen, category cat where vid.genre_id = gen.id AND vid.category_id=cat.id"+
 				" AND vid.uuid =?  ";
 		List videos = jdbcTemplate.query(query, new Object[] { uuid },
 				new VideoInfoRowMapper());
@@ -58,6 +58,7 @@ public class AssetDAO {
 		
 		if(videos!=null && videos.size() > 0){
 			return (VideoDisplayInfo) videos.get(0);
+			
 		}
 		else{
 			return null;

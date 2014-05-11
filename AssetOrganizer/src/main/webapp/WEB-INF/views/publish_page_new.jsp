@@ -93,6 +93,8 @@
 					<input name="videos[${counter.index}].fileName" type="hidden" 
 						 value="${video.fileName}" />
 					<input name="videos[${counter.index}].videoName" type="hidden" value="${video.videoName}"  />
+					<input name="videos[${counter.index}].style" type="hidden" value="${video.style}"  />
+					
 					</td>
 
 				</tr>
@@ -104,13 +106,13 @@
 		
 	  </div>
 	  <div class="text-center button-alignment">
-		<button style="display:none;"  class="btn btn-default" type="button" onClick="window.location.href='page3.html';"><i class="fa fa-arrow-left"></i> Back</button>
+		<button  class="btn btn-default" type="button" onClick="window.location.href='cancel';"><i class="fa fa-arrow-left"></i> Cancel</button>
 		<button class="btn btn-success" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
 		<!--<button class="btn btn-default" type="button">Next <i class="fa fa-arrow-right"></i></button>-->
 	  </div>
 	</div> 
 	</form:form>
-	<footer clas="bs-docs-footer" style="height: 50px;">&nbsp;</footer>
+	<footer class="bs-docs-footer" style="height: 50px;">&nbsp;</footer>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

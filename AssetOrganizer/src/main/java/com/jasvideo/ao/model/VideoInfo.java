@@ -36,7 +36,16 @@ public class VideoInfo {
 	private String thumbName;
 
 	private Integer categoryId;
-	
+	private String style;
+
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+
 	private UUID videoUUID;
 
 	public UUID getVideoUUID() {
@@ -64,7 +73,7 @@ public class VideoInfo {
 	}
 
 	private Integer genreId;
-	
+
 	private MultipartFile thumbnail;
 
 	public MultipartFile getThumbnail() {

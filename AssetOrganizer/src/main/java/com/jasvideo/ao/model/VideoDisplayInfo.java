@@ -37,5 +37,12 @@ public class VideoDisplayInfo {
 	private String thumbFileName;
 	private String genreName;
 	private String categoryName;
+	private String style;
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
 
 }

@@ -24,6 +24,7 @@ public class EnrichValidator implements Validator {
 		boolean videoNameError = false;
 		boolean categoryError = false;
 		boolean genreError = false;
+		boolean styleError = false;
 		while(videoIter.hasNext()){
 			VideoInfo video = videoIter.next();
 			if(!videoNameError && (video.getVideoName()==null||video.getVideoName().trim().equals(""))){
@@ -37,6 +38,10 @@ public class EnrichValidator implements Validator {
 			if(!genreError && (video.getGenreId()==null||video.getGenreId().equals(-1))){
 				errors.reject("errors.genreId.null", "Please select a genre");
 				genreError = true;
+			}
+			if(!styleError && (video.getStyle()==null)){
+				errors.reject("errors.style.null", "Please enter a style for the player");
+				styleError = true;
 			}
 			
 		}

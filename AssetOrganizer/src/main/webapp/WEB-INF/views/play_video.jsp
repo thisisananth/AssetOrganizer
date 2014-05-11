@@ -20,7 +20,11 @@
 <link href="resources/css/bootstrap-theme.css" rel="stylesheet">
  <!-- Custom styles for this template -->
 <link href="resources/css/theme.css" rel="stylesheet">
+
+<c:if test="${video.style eq 'blue' }" >
  <style type="text/css">
+ 
+ 
   .vjs-default-skin { color: #ffffff; }
   .vjs-default-skin .vjs-play-progress,
   .vjs-default-skin .vjs-volume-level { background-color: #13A0D8 }
@@ -30,6 +34,22 @@
   .vjs-poster{background-size:cover}
   .table{width:50%}
 </style>
+</c:if>
+
+<c:if test="${video.style eq 'red'}" > <style type="text/css">
+ 
+ 
+  .vjs-default-skin { color: #ffffff; }
+  .vjs-default-skin .vjs-play-progress,
+  .vjs-default-skin .vjs-volume-level { background-color: #eb3f25 }
+  .vjs-default-skin .vjs-control-bar,
+  .vjs-default-skin .vjs-big-play-button { background: #222c37 }
+  .vjs-default-skin .vjs-slider { background: #656E79 }
+  .vjs-poster{background-size:cover}
+  .table{width:50%}
+</style>
+</c:if>
+
 </head>
 <body>
 
@@ -45,13 +65,15 @@
 		</div>
 	</div>
 	
+	
+	
 		<div class="container theme-showcase" role="main"
 			style="width: 970px;">
 			<div class="page-header no-border color-blue">
 				<h1>Preview</h1>
 			</div>
 
-<video id="my_video_1" class="video-js vjs-default-skin vjs-big-play-centered" controls
+<video id="my_video_1" class="video-js vjs-default-skin blue vjs-big-play-centered" controls
  preload="none" width="900" height="372" poster="image/${video.thumbFileName}"
  data-setup="{}">
  <source src="video/${videoName }" type="video/mp4">
@@ -79,10 +101,14 @@
 </table>
 </div>
 
+<h4>Permalink:</h4>
+<label>You can bookmark the url or save the url below to return to the video later.</label>
 
-
+<label  id="pLink" ></label>
 
 </div>
+<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>
 // initialize video.js
 var my_video_id = videojs('my_video_1');
@@ -100,8 +126,11 @@ videojs('my_video_1').overlay({
     }]
   });
   
-  
-</script>
 
+$(function () {
+	$('#pLink').text(window.location.href);
+});
+</script>
+<footer class="bs-docs-footer" style="height: 50px;">&nbsp;</footer>
 </body>
 </html>

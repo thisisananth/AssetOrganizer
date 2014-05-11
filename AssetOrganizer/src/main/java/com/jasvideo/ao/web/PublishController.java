@@ -59,6 +59,12 @@ public class PublishController {
 		return "publish_success";
 	}
 	
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
+	public String cancel(Model model,HttpServletRequest request){
+		request.getSession().invalidate();
+		return "home";
+	}
+	
 	
 
 }

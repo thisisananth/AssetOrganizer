@@ -19,6 +19,13 @@ public class VideoInfoRowMapper implements RowMapper<VideoDisplayInfo> {
 		videoInfo.setThumbFileName(rs.getString("thumbnail_name"));
 		videoInfo.setGenreName(rs.getString("genre_name"));
 		videoInfo.setCategoryName(rs.getString("category_name"));
+		
+		String style =  rs.getString("style");
+		
+		if(style==null){
+			style = "blue";
+		}
+		videoInfo.setStyle(style);
 		return videoInfo;
 	}
 

@@ -32,7 +32,7 @@ import com.jasvideo.ao.model.FilesHolder;
 import com.jasvideo.ao.model.VideoInfo;
 
 @Controller
-public class FileUploadController  {
+public class FileUploadController {
 	@Value("${video.dir}")
 	private String videoSaveDirectory;
 	@Value("${thumb.dir}")
@@ -40,135 +40,68 @@ public class FileUploadController  {
 	private static final Logger log = LoggerFactory
 			.getLogger(FileUploadController.class);
 
-	
-
 	@Autowired
 	private AssetDAO assetDAO;
 
-	@RequestMapping(value = "/upload", method = RequestMethod.GET)
-	public String displayForm() {
-		return "file_upload_page";
+	@RequestMapping(value = "/ingest", method = RequestMethod.POST)
+	private String getThumbnails(Model model, HttpServletRequest request) {
+
+		EnrichForm uploadThumbsForm = new EnrichForm();
+		List videos = new ArrayList<VideoInfo>();
+
+		List files = (List) request.getSession().getAttribute("files");
+		Iterator fileIter = files.iterator();
+		while (fileIter.hasNext()) {
+			FileMeta meta = (FileMeta) fileIter.next();
+			VideoInfo info = new VideoInfo();
+			info.setFileName(meta.getFileName());
+			log.info("Setting file name:" + meta.getFileName());
+			videos.add(info);
+
+		}
+		uploadThumbsForm.setVideos(videos);
+		model.addAttribute("uploadThumbsForm", uploadThumbsForm);
+
+		return "upload_thumbs";
+
 	}
 
-	
+	@RequestMapping(value = "/ingest-thumbs", method = RequestMethod.POST)
+	private String saveThumbs(
+			@ModelAttribute("uploadThumbsForm") EnrichForm uploadThumbsForm,
+			Model model, HttpServletRequest request)
+			throws IllegalStateException, IOException {
 
-	@RequestMapping(value = "/ingest_plain", method = RequestMethod.POST)
-	public String save(
-			@ModelAttribute("uploadForm") @Valid FileUploadForm uploadForm,
-			BindingResult result, Model model) throws IllegalStateException,
-			IOException {
+		List videoList = uploadThumbsForm.getVideos();
 
-		// Check for validation error
-		if (result.hasErrors()) {
-
-			return "file_upload_page";
-		}
-
-		List<FilesHolder> videoFiles = uploadForm.getFiles();
-
-		List<VideoInfo> videos = new ArrayList<VideoInfo>();
-
-		if (null != videoFiles && videoFiles.size() > 0) {
-
-			log.info("Uploaded File size:" + videoFiles.size());
-			for (FilesHolder filesHolder : videoFiles) {
-				MultipartFile videoFile = filesHolder.getVideoFile();
-				MultipartFile thumbnail = filesHolder.getThumbnail();
-				VideoInfo info = new VideoInfo();
-				if (!videoFile.isEmpty()) {
-					String fileName = videoFile.getOriginalFilename();
-
-					info.setFileName(fileName);
-					videoFile
-							.transferTo(new File(videoSaveDirectory + fileName));
-
-				}
-				if (!thumbnail.isEmpty()) {
-					String fileName = thumbnail.getOriginalFilename();
-					info.setThumbName(fileName);
-					thumbnail
-							.transferTo(new File(thumbSaveDirectory + fileName));
-				}
-
-				videos.add(info);
+		Iterator videoIter = videoList.iterator();
+		while (videoIter.hasNext()) {
+			VideoInfo info = (VideoInfo) videoIter.next();
+			MultipartFile thumbnail = info.getThumbnail();
+			if (thumbnail != null && !thumbnail.isEmpty()) {
+				String fileName = thumbnail.getOriginalFilename();
+				info.setThumbName(fileName);
+				thumbnail.transferTo(new File(thumbSaveDirectory + fileName));
+				info.setThumbName(fileName);
+				info.setThumbnail(null);// removing the file from the info
 
 			}
 		}
 
 		EnrichForm enrichForm = new EnrichForm();
-		enrichForm.setVideos(videos);
-		model.addAttribute("enrichForm", enrichForm);
-		
-		Map<Integer, String> categories = assetDAO.getCategoryMap();
-		Map<Integer, String> genres = assetDAO.getGenreMap();
-		
-		model.addAttribute("categories", categories);
-		model.addAttribute("genres", genres);
-		log.info("No of videos in the form:"+enrichForm.getVideos().size());
-		
-		
-		return "enrich_page";
-	}
-
-	@RequestMapping(value="/ingest",method=RequestMethod.GET)
-	private String getThumbnails(@ModelAttribute("uploadThumbsForm")  EnrichForm enrichForm,Model model,HttpServletRequest request){
-		
-		EnrichForm uploadThumbsForm = new EnrichForm();
-		List videos  = new ArrayList<VideoInfo>();
-		
-		List files = (List) request.getSession().getAttribute("files");
-		Iterator fileIter = files.iterator();
-		while(fileIter.hasNext()){
-			FileMeta meta = (FileMeta) fileIter.next();
-			VideoInfo info = new VideoInfo();
-			info.setFileName(meta.getFileName());
-			log.info("Setting file name:"+meta.getFileName());
-			videos.add(info);
-		
-		}
-		uploadThumbsForm.setVideos(videos);
-		model.addAttribute("uploadThumbsForm", uploadThumbsForm);
-		
-		return "upload_thumbs";
-		
-	}
-	
-	@RequestMapping(value="/ingest-thumbs",method=RequestMethod.POST)
-	private String saveThumbs(@ModelAttribute("uploadThumbsForm")  EnrichForm uploadThumbsForm,Model model,HttpServletRequest request) throws IllegalStateException, IOException{
-		
-		List videoList = uploadThumbsForm.getVideos();
-		
-		Iterator videoIter = videoList.iterator();
-		while(videoIter.hasNext()){
-			VideoInfo info = (VideoInfo) videoIter.next();
-		    MultipartFile thumbnail = info.getThumbnail();
-		    if(thumbnail!=null && !thumbnail.isEmpty()){
-		    	String fileName = thumbnail.getOriginalFilename();
-				info.setThumbName(fileName);
-				thumbnail
-						.transferTo(new File(thumbSaveDirectory + fileName));
-				info.setThumbName(fileName);
-				info.setThumbnail(null);//removing the file from the info
-		    	
-		    }
-		}
-		
-		EnrichForm enrichForm = new EnrichForm();
 		enrichForm.setVideos(videoList);
 		model.addAttribute("enrichForm", enrichForm);
-		
+
 		Map<Integer, String> categories = assetDAO.getCategoryMap();
 		Map<Integer, String> genres = assetDAO.getGenreMap();
-		
+
 		model.addAttribute("categories", categories);
 		model.addAttribute("genres", genres);
-		log.info("No of videos in the form:"+enrichForm.getVideos().size());
+		log.info("No of videos in the form:" + enrichForm.getVideos().size());
 		request.getSession().removeAttribute("files");
-		
-		
+
 		return "enrich_page_new";
-		
+
 	}
-	
 
 }

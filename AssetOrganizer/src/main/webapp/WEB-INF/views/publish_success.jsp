@@ -70,7 +70,7 @@
 			<br>
 			<h4 align="center">Your files are published successfully.</h4>
 			<br>
-		 <div class="text-center button-alignment">
+		 <div class="text-center">
 		<button class="btn btn-success" type="button" onClick="window.location.href='preview?id=${uuid}';" >Preview <i class="fa fa-arrow-right"></i></button>
 	  	</div>
 			
@@ -79,11 +79,10 @@
 		
 		
 	  </div>
-	  
+	 
 	</div> 
 	
-	
-	<footer clas="bs-docs-footer" style="height: 50px;">&nbsp;</footer>
+	<footer class="bs-docs-footer" style="height: 50px;">&nbsp;</footer>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

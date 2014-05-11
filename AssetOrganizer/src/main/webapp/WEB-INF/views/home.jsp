@@ -158,15 +158,17 @@ display:none;
 					onClick="window.location.href='page2.html';">
 					<i class="fa fa-floppy-o"></i> Save
 				</button>
+				<form action="ingest" method="POST">
 				<button type="submit" id="nextButton" class="btn btn-success hide" type="button"
-					onClick="window.location.href='ingest';">
+					>
 					Next <i class="fa fa-arrow-right"></i>  
 				</button>
+				</form>
 			</div>
 		</div>
 
 	
-	<footer clas="bs-docs-footer" style="height: 50px;">&nbsp;</footer>
+	<footer class="bs-docs-footer" style="height: 50px;">&nbsp;</footer>
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<script
