@@ -117,7 +117,7 @@
 				</tbody>
 			  </table>
 			</div>
-			<h5>Please select the player style</h5>
+			<h5>Please select the player theme</h5>
 			<div class="table-responsive">
 			  <table class="table table-bordered">
 				<thead>
@@ -136,14 +136,14 @@
 				  <tr>
 					<td rowspan="2">${video.fileName}</td>
 					<td><input name="videos[${counter.index}].style"
-						type="radio" value="blue" /> &nbsp;blue</td>
+						type="radio" value="blue" /> &nbsp;Aqua- Blue</td>
 					<td><img alt="blue preview" width="490em" height="200em" src="resources/images/blue-player.png"> </td>
 					
 				  </tr>
 				  <tr>
 					
 					<td><input name="videos[${counter.index}].style"
-						type="radio" value="red" /> &nbsp;red</td>
+						type="radio" value="red" /> &nbsp;Inferno - Red</td>
 					<td><img alt="red preview" width="490em" height="200em" src="resources/images/red-player.png"> </td>
 					
 				  </tr>
