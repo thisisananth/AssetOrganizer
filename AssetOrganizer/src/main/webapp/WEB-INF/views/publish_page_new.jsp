@@ -94,6 +94,7 @@
 						 value="${video.fileName}" />
 					<input name="videos[${counter.index}].videoName" type="hidden" value="${video.videoName}"  />
 					<input name="videos[${counter.index}].style" type="hidden" value="${video.style}"  />
+					<input name="videos[${counter.index}].playerName" type="hidden" value="${video.playerName}"  />
 					
 					</td>
 

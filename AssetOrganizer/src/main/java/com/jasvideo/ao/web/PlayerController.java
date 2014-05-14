@@ -45,7 +45,7 @@ public class PlayerController {
 		log.info("ext:" + ext);
 		model.addAttribute("ext", ext);
 		model.addAttribute("video",videoInfo);
-		model.addAttribute("playerName","VG Player");
+		
 		
 		
 		

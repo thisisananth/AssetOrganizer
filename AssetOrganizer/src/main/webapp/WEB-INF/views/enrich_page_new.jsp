@@ -73,6 +73,7 @@
 				  <tr>
 					<th>File Name</th>
 					<th>Video Name</th>
+					<th>Player Name[10 characters only*]</th>
 					<th>Category</th>
 					<th>Genre</th>
 				  </tr>
@@ -86,6 +87,9 @@
 					<td>${video.fileName}</td>
 					<td><input name="videos[${counter.index}].videoName"
 						type="text" /></td>
+					<td><input name="videos[${counter.index}].playerName" maxlength="10"
+						type="text" /></td>
+					
 					<td class="form-inline">
 						
 						<select class="form-control" name="videos[${counter.index}].categoryId">
@@ -122,7 +126,7 @@
 			  <table class="table table-bordered">
 				<thead>
 				  <tr>
-				  	<th>File Name</th>
+				  
 					<th>Color</th>
 					<th>Preview </th>
 					
@@ -134,7 +138,7 @@
 				<c:forEach varStatus="counter" var="video"
 				items="${enrichForm.videos}">
 				  <tr>
-					<td rowspan="2">${video.fileName}</td>
+					
 					<td><input name="videos[${counter.index}].style"
 						type="radio" value="blue" /> &nbsp;Aqua- Blue</td>
 					<td><img alt="blue preview" width="490em" height="200em" src="resources/images/blue-player.png"> </td>

@@ -37,6 +37,13 @@ public class VideoDisplayInfo {
 	private String thumbFileName;
 	private String genreName;
 	private String categoryName;
+	private String playerName;
+	public String getPlayerName() {
+		return playerName;
+	}
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
 	private String style;
 	public String getStyle() {
 		return style;

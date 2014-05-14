@@ -73,6 +73,16 @@ public class VideoInfo {
 	}
 
 	private Integer genreId;
+	
+	private String playerName;
+	
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
 
 	private MultipartFile thumbnail;
 

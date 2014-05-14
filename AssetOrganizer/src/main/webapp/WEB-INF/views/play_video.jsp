@@ -119,7 +119,7 @@ var my_video_id = videojs('my_video_1');
 videojs('my_video_1').overlay({
     content: '<strong>VG Player</strong>',
     overlays: [{
-      content: '${playerName}',
+      content: '${video.playerName}',
       start: 'play',
       end: 'never',
       align: 'top-right'

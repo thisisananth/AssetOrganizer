@@ -26,6 +26,13 @@ public class VideoInfoRowMapper implements RowMapper<VideoDisplayInfo> {
 			style = "blue";
 		}
 		videoInfo.setStyle(style);
+		
+		String playerName = rs.getString("playerName");
+		if(playerName==null){
+			playerName = "VG Player";
+		}
+		videoInfo.setPlayerName(playerName);
+		
 		return videoInfo;
 	}
 
